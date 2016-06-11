@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="cap">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head
+         content must come *after* these tags -->
+
+    <title>Green Maths</title>
+        <!-- Bootstrap -->
+<!-- build:css styles/main.css -->
+    <link href="./bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="./bower_components/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet">
+    <link href="./bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="styles/bootstrap-social.css" rel="stylesheet">
+    <link href="stylesheets/style.css" rel="stylesheet">
+<!-- endbuild -->
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+
+  <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+          <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+                  <span class="sr-only">Toggle navigation</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" ui-sref="app">MATHS</a>
+          </div>
+          <div id="navbar" class="navbar-collapse collapse">
+              <ul class="nav navbar-nav">
+                  <li><a ui-sref="app">
+                      <span class="glyphicon glyphicon-home"
+                       aria-hidden="true"></span> Home</a></li>
+                  <li><a ui-sref="app.aboutus">
+                      <span class="glyphicon glyphicon-info-sign"
+                       aria-hidden="true"></span> About</a></li>
+                  <li><a ui-sref="app.menu">
+                       <span class="glyphicon glyphicon-list-alt"
+                       aria-hidden="true"></span>
+                       Courses</a></li>
+                   <li><a ui-sref="app.contactus">
+                   <i class="fa fa-envelope-o"></i> Contact</a></li>
+              </ul>
+
+              <ul class="nav navbar-nav navbar-right">
+                  <li><a data-toggle="modal" data-target="#loginModal">
+                    <span class="glyphicon glyphicon-log-in">
+                    </span> {{appCtr.user.member ? 'Login' : 'Register'}}</a>
+                  </li>
+              </ul>
+          </div>
+      </div>
+  </nav>
+  <div id="loginModal" class="modal fade" role="dialog">
+      <div class="modal-dialog modal-md" ng-controller="RegisterController as rCtr">
+      <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">REGISTER To Enroll </h4>
+              <h6 ng-click="rCtr.claim()">Already Registered? <a href="">SIGN IN</a></h6>
+          </div>
+
+          <div class="modal-body">
+              <form class="form-horizontal" role="form" ng-submit="rCtr.register()" name='regForm'>
+                <div class="form-group">
+                      <label class="sr-only col-sm-2 control-label" for="userName">User Name</label>
+                      <input type="text" class="form-control input-sm col-sm-10" id="userName"
+                       ng-model="rCtr.user.username" placeholder="User Name">
+                </div>
+                <!--div class="form-group">
+                      <label class="sr-only" for="idEmail">Email address</label>
+                      <input type="email" class="form-control input-sm" id="idEmail"
+                       ng-model="rCtr.prospect.email"placeholder="Email">
+                </div-->
+                <div class="form-group">
+                  <label class="sr-only col-sm-2 control-label" for="pw">Password</label>
+                  <input type="password" class="form-control input-sm" id="pw"
+                   ng-model="rCtr.user.pw"placeholder="Password">
+                </div>
+                <div class="form-group">
+                  <div class="checkbox col-sm-offset-2 col-sm-10">
+                    <label for="remember">
+                        <input type="checkbox" id ="remember" name="remember" value="">
+                         Remember Me?
+                    </label>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" class="btn btn-primary btn-sm">
+                      {{rCtr.user.member ? 'Sign In' : 'Register'}}</button>
+                    <button type="button" class="btn btn-default btn-sm"
+                            data-dismiss="modal">Cancel</button>
+                  </div>
+                </div>
+              </form>
+          </div>
+        </div>
+      </div>
+  </div>
+
+  <header class="jumbotron">
+      <div class="container">
+          <div class="row row-header">
+              <div class="col-lg-12">
+                  <h1>Teach Your Children To Use Their Math Skills To Save The Planet.</h1>
+              </div>
+          </div>
+      </div>
+  </header>
+  <div class="container-fluid" ng-controller="CorController as cCtr">
+      <div class="row row-header">
+          <div class="col-xs-12 col-sm-2">
+          </div>
+          <div class="col-xs-12 col-sm-10">
+            <form class="">
+              <img ng-repeat="img in cCtr.cor.imgs.first track by $index" ng-src={{cCtr.cor.srcs.first}} height="40" width="40" alt="first" />
+              <img ng-repeat="img in cCtr.cor.imgs.second" ng-src={{cCtr.cor.srcs.second}} alt="second" />
+              <descr ng-repeat="d in cCtr.cor.ds track by $index" desc="d.desc"/>
+              <quest ng-repeat="q in cCtr.cor.qs track by $index" qt="q.qt" qu="q"
+                answer="cCtr.cor.answer($index,ans)"/>
+            </form>
+            <a ng-click="cCtr.shift(false)"><i class="fa fa-arrow-left"> PREV</i></a>
+            <a ng-click="cCtr.shift(true)">NEXT <i class="fa fa-arrow-right"></i></a>
+          </div>
+      </div>
+  </div>
+
+
+
+<!-- build:js scripts/main.js -->
+    <script src="./bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="./bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="./bower_components/angular/angular.min.js"></script>
+    <script src="./bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+    <script src="./bower_components/angular-resource/angular-resource.min.js"></script>
+
+    <script src="javascripts/jQCalls.js"></script>
+    <script src="javascripts/app.js"></script>
+    <script src="javascripts/controllers.js"></script>
+    <script src="javascripts/services.js"></script>
+    <script src="init0.js"></script>
+<!-- endbuild -->
+
+</body>
+
+</html>

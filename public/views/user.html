@@ -1,0 +1,62 @@
+
+<div class="container cor-header" ng-controller="UserController as uCtr">
+  <div class="col-xs-12">
+     <ul class="breadcrumb">
+         <li><a href="#">Home</a></li>
+         <li><a href="#">Challenges</a></li>
+         <li class="active">User</li>
+     </ul>
+  </div>
+  <div class="textc" ng-controller="UserController as uCtr">
+    <h4>Welcome {{uCtr.getName()}}!</h4>
+    <h5>Are You Ready To Use your Math Skills To Save The Planet?</h5>
+    <h4>If you have any trouble navigating this prototype:</h4>
+    <a class="btn btn-success" ng-click="uCtr.openHelp()">Help <i class="fa fa-question-circle"></i></a>
+  </div>
+    <div class="row row-content textc">
+      <div class="col-xs-12" ng-if="!uCtr.showCs">
+        <h3>{{uCtr.message}}</h3>
+      </div>
+      <div class="col-xs-12">
+         <ul class="nav nav-tabs" role="tablist">
+             <li role="presentation"
+              ng-class="{active:uCtr.isSelected(1)}">
+             <a ng-click="uCtr.select(1)"
+              aria-controls="all menu"
+              role="tab">My Challenges</a></li>
+          </ul>
+          <div class="tab-content">
+          <ul class="media-list" tab-pane fade in active>
+            <li ng-if="uCtr.courses.length === 0">
+              <a href="#" ui-sref="app.courses"><h4>You have no challenges yet! View the challenges.</h4></a> </li>
+            <li class="media bg-green1" ng-repeat="course in uCtr.courses track by $index">
+                <div class="media-left media-middle">
+                    <a ui-sref="app.course({id: course._id})">
+                    <img class="media-object img-thumbnail"
+                     ng-src={{course.img}} alt={{course.name}} width="120px" height="100px">
+                    </a>
+                </div>
+                <div class="media-body">
+                    <h2 class="media-heading">{{course.name}}
+                     <span class="label label-success">{{course.progress}}</span>
+                    </h2>
+                    <button type="button" class="btn btn-lg btn-primary"
+                      ng-click="uCtr.showProg(course._id, $index)">Show Progress
+                      <i class="fa fa-bar-chart"></i>
+                    </button>
+                    <a class="btn btn-lg btn-success" role="button" ui-sref="app.cor({id:course._id})">
+                    Go To Course <i class="fa fa-hand-o-right"></i></a>
+                </div>
+            </li>
+          </ul>
+          </div>
+      </div>
+    </div>
+    <h3 ng-if="!(uCtr.progTxt === '')">{{uCtr.progTxt}}</h3>
+    <div class="" ng-if="uCtr.d3Data">
+      <h4>Here is a simple graph of your progress so far.</h4>
+      <h3>The bars represent how many attempts you made.</h3>
+      <d3-bars  data="uCtr.d3Data" ></d3-bars>
+    </div>
+
+</div>

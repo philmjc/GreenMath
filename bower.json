@@ -1,0 +1,35 @@
+{
+  "name": "greenMath",
+  "version": "1.0.0",
+  "description": "Using Math To Save The Planet",
+  "main": "index.html",
+  "moduleType": [],
+  "keywords": [
+    "math",
+    "education",
+    "eco"
+  ],
+  "authors": [
+    "Phil Clark"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.6",
+    "font-awesome": "fontawesome#^4.5.0",
+    "angular": "~1.5.3",
+    "angular-route": "~1.5.3",
+    "angular-ui-router": "~0.2.18",
+    "angular-resource": "~1.5.3",
+    "angular-mocks": "~1.5.3",
+    "jquery": "^2.2.2",
+    "ng-dialog": "^0.6.1"
+  }
+}

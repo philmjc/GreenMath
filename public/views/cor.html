@@ -1,0 +1,89 @@
+<div class="container-fluid cor-con" ng-controller="CorController as cCtr">
+  <div class="row row-header"  ng-class="cCtr.cor.envir.bg">
+    <div class="hidden-sm col-md-2">
+
+    </div>
+    <div class="col-sm-12 col-md-10 cor-ext">
+     <div class="row">
+      <div class="col-sm-12 col-lg-10">
+      <div class="flip">
+          <a href="" ng-repeat="cor in cCtr.cors.content track by $index" ng-click="cCtr.changeTrack($index)">
+            {{cor.qs[0].templ ?  cor.qs[0].templ : 'Challenge ' + $index}}</a>
+      </div>
+      <div class="cor-header textc" ng-controller="UserController as uCtr">
+        <h4>Welcome {{uCtr.getName()}}!</h4>
+        <h5>Are You Ready To Use your Math Skills To Save The Planet?</h5>
+        <h4>If you have any trouble navigating this prototype:</h4>
+        <a class="btn btn-success" ng-click="cCtr.openHelp()">Help <i class="fa fa-question-circle"></i></a>
+      </div>
+
+      <!-- begin repeat of dynamic part of page -->
+      <div ng-repeat="q in cCtr.cor.qs track by $index"class="cor" ng-class="q.class">
+        <!-- This just uses angular directives to insert pre-made templates into
+          the page for content that is not dynamically created e.g. introduction.
+          See directives.js module -->
+        <templ ng-if="q.templ === 'Intro'" tsrc="intro"></templ>
+        <templ ng-if="q.templ === 'Survey'" tsrc="survey"></templ>
+
+        <div ng-if="q.lab" class="lab">
+          <span ng-repeat="lab in cCtr.progress.labs[cCtr.track] track by $index"
+            class="label label-danger lab">{{lab}}</span>
+        </div>
+        <div ng-if="q.imgs" ng-repeat="img in q.imgs" ng-class="img.class" >
+        </div>
+        <!--img ng-repeat="img in q.imgs[0].arr track by $index"
+          ng-src={{q.imgs[0].src}} height="40" width="40" alt="first" /-->
+
+        <p ng-repeat="ctxt in q.ctxts" compile="ctxt"></p>
+        <p ng-repeat="txt in q.txts">{{txt}}</p>
+        <input ng-if="q.qt=='txtInput'" type="text"
+          ng-model="cCtr.progress.ans[cCtr.track][$index]" value="">
+        <textarea ng-if="q.qt==='txtArea'" rows={{q.qtR}}
+          ng-model="cCtr.progress.ans[cCtr.track][$index]" value=""></textarea>
+
+        <button ng-if="q.sub" class="btn btn-success btn-ans" type="button"
+          ng-click="cCtr.answer($index)">Answer! <i class="fa fa-hand-o-up"></i></button>
+        <div ng-if="cCtr.rights[$index] && (cCtr.tries[$index] !== 0)"
+          class="answer alert alert-success">
+          <i class="fa fa-check-circle"></i> Awesome!<br>
+        </div>
+        <div ng-if="!cCtr.rights[$index] && (cCtr.tries[$index] !== 0)"
+          class="answer alert alert-danger" ng-click="cCtr.forceHint($index)">
+            Try again or see the <b>HINT </b> <i class="fa fa-question-circle"></i></a>
+        </div>
+        <div ng-if="cCtr.cheats[$index]" class="alert alert-danger">
+          <button type="button" class="close" ng-click="cCtr.toggleCheat($index)" aria-label="Close">
+            <span aria-hidden="true">&times;</span></button>
+          <p ng-repeat="cheat in cCtr.genCheat">{{cheat}}</p>
+        </div>
+        <div ng-if="cCtr.hints[$index]" class="alert alert-warning hint">
+          <button type="button" class="close" ng-click="cCtr.toggleHint($index)" aria-label="Close">
+            <span aria-hidden="true">&times;</span></button>
+          <p ng-repeat="hint in q.hs">{{hint}}</p>
+        </div>
+        <div class="btn-cor">
+          <button ng-if="q.hs" a href="" class="btn btn-success" ng-click="cCtr.toggleHint($index)">
+            {{cCtr.hints[$index] ? "Hide Hint" : "Show Hint"}} <i class="fa fa-question-circle"></i></button>
+          <button ng-if="q.genCheat" class="btn btn-success" ng-click="cCtr.toggleCheat($index, q.genCheat)">
+            {{cCtr.cheats[$index] ? "Hide Answer" : "Show Answer"}} <i class="fa fa-plus-square"></i></button>
+        </div>
+        <div ng-if="q.imgb" ng-repeat="img in q.imgb" ng-class="img.class" >
+        </div>
+      </div>
+      <!-- end repeat of dynamic part of page-->
+
+      <div class="flip">
+        <a href="" ng-click="cCtr.shift(false)"><i class="fa fa-arrow-left"> GO BACK</i></a>
+        <a href="" ng-click="cCtr.repeat()"><i class="fa fa-repeat"></i> REPEAT</a>
+        <a href="" ng-click="cCtr.shift(true)">NEXT <i class="fa fa-arrow-right"></i></a>
+        <a href="" ng-click="cCtr.shift(true)">LEAVE <i class="fa fa-sign-out"></i></a>
+        <a href="" ng-click="cCtr.checkProg()">CHECK PROGRESS <i class="fa fa-user"></i></a>
+      </div>
+      </div>
+      <div class="col-lg-2">
+
+      </div>
+      </div>
+    </div>
+  </div>
+</div>

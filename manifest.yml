@@ -1,0 +1,8 @@
+applications:
+- path: .
+  memory: 512M
+  instances: 1
+  command: node ./bin/www
+  name: philmjcCap
+  host: philmjccap
+  disk_quota: 1024M

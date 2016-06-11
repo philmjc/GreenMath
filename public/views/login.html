@@ -1,0 +1,58 @@
+
+<!--div id="loginModal" class="modal fade" role="dialog"-->
+<div class="modal-dialog modal-md textc" ng-controller="AuthController as aCtr">
+<!--div class="ngdialog-message"-->
+  <div class="modal-header">
+      <button type="button" class="close" ng-click="aCtr.toggleLogin()">&times;</button>
+      <h4 ng-if="aCtr.user.newUser  || aCtr.user.freeMode" class="modal-title">We are currently in FREE TRIAL MODE.<br>
+        For a demonstration of full features, you can register over an insecure connection
+        (DON'T USE ONE OF YOUR SECURE PASSWORDS)  or <br> <a href="" ng-click="aCtr.skip()">SKIP REGISTRATION</a></h4>
+      <h4 ng-if="!aCtr.user.newUser && !aCtr.user.freeMode" class="modal-title">'Please SIGN IN' </h4>
+      <h5 ng-click="aCtr.claim()">{{aCtr.user.newUser || aCtr.user.freeMode ? 'Already Registered? ' : 'Not Registered Yet? '}}
+        <a href="">{{aCtr.user.newUser || aCtr.user.freeMode ? ' SIGN IN here. ' : ' Please REGISTER '}}</a></h5>
+  </div>
+
+  <div class="modal-body">
+      <form class="form-horizontal" role="form" ng-submit="aCtr.register()" name='regForm'>
+        <div class="form-group">
+              <label class="sr-only control-label" for="userName">User Name</label>
+              <input type="text" class="form-control input-sm" id="userName"
+               ng-model="aCtr.user.username" placeholder="User Name" required>
+        </div>
+        <!--div class="form-group">
+              <label class="sr-only" for="idEmail">Email address</label>
+              <input type="email" class="form-control input-sm" id="idEmail"
+               ng-model="aCtr.prospect.email"placeholder="Email">
+        </div-->
+        <div class="form-group">
+          <label class="sr-only control-label" for="pw">Password</label>
+          <input type="password" class="form-control input-sm" id="pw"
+           ng-model="aCtr.user.password"placeholder="Password" required>
+        </div>
+        <div class="form-group">
+          <div class="checkbox">
+            <label for="remember">
+                <input type="checkbox" id ="remember" name="remember" value="">
+                 Remember Me?
+            </label>
+          </div>
+        </div>
+        <div class="form-group">
+          <div>
+            <button type="submit" class="btn btn-primary btn-sm">
+              {{aCtr.user.newUser || aCtr.user.freeMode ? 'Register' : 'Sign In'}}</button>
+
+            <button type="button" class="btn btn-default btn-sm"
+              ng-click='aCtr.toggleLogin()'>Cancel</button>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="control-label">{{aCtr.msg}}</label>
+          <div>
+            <button type="button" class="btn btn-success btn-lg"
+                    ng-click="aCtr.skip()">Skip Sign Up and use Trial Mode</button>
+          </div>
+        </div>
+      </form>
+  </div>
+</div>

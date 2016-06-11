@@ -1,0 +1,16 @@
+<div class="">
+  A section of rainforest contains {{corCtr.init0}} trees.<br>
+  They are being cut down at the rate of {{corCtr.rate0}} per year.<br>
+  Trees : {{corCtr.init0}}.
+  Rate : {{corCtr.rate0}} / year.
+</div>
+
+
+<div class="form-group">
+  <label for="">{{cCtr.cor.submit}}</label>
+  <input type="text" name="soln" class="form-control" ng-model="cCtr.soln[$index]" value="">
+</div>
+  <button class="btn btn-default" type="button" ng-click="cCtr.solve()"><i class="fa fa-upload"></i> Submit</button>
+<i ng-show="cCtr.right" class="fa fa-check-circle"></i><br>
+<a ng-show="cCtr.wrong" a href="">
+  Would you like to try again? <i class="fa fa-repeat"></i></a><br>

@@ -1,0 +1,70 @@
+
+<div class="container cor-header textc" ng-controller="CoursesController as corsCtr">
+  <div class="col-xs-12">
+     <ul class="breadcrumb">
+         <li><a href="#">Home</a></li>
+         <li class="active">Courses</li>
+     </ul>
+  </div>
+    <div class="row row-content">
+      <div class="col-xs-12" ng-if="!corsCtr.showCs">
+        <h3>{{corsCtr.message}}</h3>
+      </div>
+      <div class="col-xs-12 txtc" ng-controller="HelpController as hCtr">
+        <h3>Welcome To The Challenges!</h3>
+        <h4>The module for juniors is now available and is free to evaluate.</h4>
+        <h5>We are currently in FREE TRIAL MODE.<br>
+
+        <h4>If you have trouble enrolling or navigating this prototype:</h4>
+        <a class="btn btn-success" ng-click="hCtr.openHelp()">Help <i class="fa fa-question-circle"></i></a>
+      </div>
+      <div class="col-xs-12">
+         <button ng-click="corsCtr.toggleDetails()" class="btn btn-xs btn-primary pull-right" type="button">
+                {{corsCtr.showDetails ? 'Hide Details':'Show Details'}}
+         </button>
+         <ul class="nav nav-tabs" role="tablist">
+             <li role="presentation"
+              ng-class="{active:corsCtr.isSelected(1)}">
+             <a ng-click="corsCtr.select(1)"
+              aria-controls="all menu"
+              role="tab">All Courses</a></li>
+             <li role="presentation"
+              ng-class="{active:corsCtr.isSelected(2)}">
+             <a ng-click="corsCtr.select(2)"
+              aria-controls="juniors"
+              role="tab">Junior</a></li>
+             <li role="presentation"
+              ng-class="{active:corsCtr.isSelected(3)}">
+             <a ng-click="corsCtr.select(3)"
+              aria-controls="intermediate"
+              role="tab">Intermediate</a></li>
+             <li role="presentation"
+              ng-class="{active:corsCtr.isSelected(4)}">
+             <a ng-click="corsCtr.select(4)"
+              aria-controls="senior"
+              role="tab">Senior</a></li>
+          </ul>
+          <div class="tab-content" ng-controller="AuthController as aCtr">
+          <ul class="media-list" tab-pane fade in active>
+            <li class="media bg-green1" ng-repeat="course in corsCtr.courses | level:corsCtr.filtText">
+                <div class="media-left media-middle">
+                    <a ui-sref="app.course({id: course._id})">
+                    <img class="media-object img-thumbnail"
+                     ng-src={{course.img}} alt={{course.name}} width="120px" height="100px">
+                    </a>
+                </div>
+                <div class="media-body">
+                    <h2 class="media-heading">{{course.name}}
+                     <span class="label label-danger">{{course.label}}</span>
+                     <span class="badge">{{course.price}}</span></h2>
+                    <p ng-show="corsCtr.showDetails">{{course.descr}}</p>
+                    <a ng-if="course.active" class="btn btn-lg btn-primary"
+                     role="button" ng-click="corsCtr.enroll(course)">
+                    <i class="fa fa fa-pencil-square-o"></i> Enrol</a>
+                </div>
+            </li>
+          </ul>
+          </div>
+      </div>
+    </div>
+</div>
