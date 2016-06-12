@@ -1,5 +1,5 @@
 // File to insert courses objects into db
-// These arrays are parsed im by the AI Service Module and converted by Controllers into DOM elements.
+// These arrays are parsed in by the AI Service Module and converted by Controllers into DOM elements.
 // What's the point? Much more efficient data transfer, data caching for off-line use and a more dynamic and responsive UI than
 // compiling and transferring a template for each question.
 // This can be efficiently cached by browser for off-line use.
@@ -13,9 +13,9 @@ function initCor() {
   });
   /*
   var bulk = db.courses.initializeUnorderedBulkOp();
-  bulk.insert( initCors[0] );
-  bulk.insert( initCors[1] );
-  bulk.insert( initCors[2] );
+  initCors.forEach(function(course) {
+    bulk.insert(course);
+  });
   bulk.execute();
   */
 
