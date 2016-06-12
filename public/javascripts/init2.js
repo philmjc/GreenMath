@@ -1,17 +1,16 @@
+// File to insert courses objects into db
+// These arrays are parsed im by the AI Service Module and converted by Controllers into DOM elements.
+// What's the point? Much more efficient data transfer, data caching for off-line use and a more dynamic and responsive UI than
+// compiling and transferring a template for each question.
+// This can be efficiently cached by browser for off-line use.
 
 
-var i = 0;
-var arr;
-function create(n) {
-  i = 0;
-  arr = Array(n).fill(++i);
-}
 function initCor() {
   db = db.getSiblingDB('cap');
   db.courses.drop();
-  db.courses.insert( initCors[0] );
-  db.courses.insert( initCors[1] );
-  db.courses.insert( initCors[2] );
+  initCors.forEach(function(course) {
+    db.courses.insert(course);
+  });
   /*
   var bulk = db.courses.initializeUnorderedBulkOp();
   bulk.insert( initCors[0] );
