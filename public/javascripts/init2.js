@@ -1,4 +1,4 @@
-// mongo ds013221.mlab.com:13221/cap -u philmlab -p zaqWE321
+
 
 var i = 0;
 var arr;
