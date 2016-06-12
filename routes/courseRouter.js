@@ -32,6 +32,7 @@ courseRouter.route('/')
         res.json(resp);
     });
 });
+*/
 
 courseRouter.route('/:id')
 .get(Verify.verifyUser, function (req, res, next) {
@@ -42,7 +43,8 @@ courseRouter.route('/:id')
         else res.json(course);
     });
 })
-
+/*
+ Use alternative secure access until I get security certificate
 .put(Verify.verifyUser, Verify.verifyAdmin, function (req, res, next) {
     Courses.findByIdAndUpdate(req.params.courseId, {
         $set: req.body
