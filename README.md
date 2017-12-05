@@ -8,9 +8,9 @@
 - Json for problems and user progress profile persisted by MongoDB backend.
 - User can get feedback profile constructed using D3.js.
 
-**Phase 2. Extending the basic architecture and designing for scale and eventual migration to Angular 2**  
-Models: Design schema for fast access, optimised 1-1 embedding and minimised M-M storage.  
-Controllers: Focus on lean controllers, modularity and component directives.  
-TypeScript: Start embedding it.  
+**Phase 2. Extending the basic architecture and designing for scale and eventual migration to Angular 2 :**  
+- Models: Design schema for fast access, optimised 1-1 embedding and minimised M-M storage.  
+- Controllers: Focus on lean controllers, modularity and component directives.  
+- TypeScript: Start embedding it.  
 
 _**Feedback appreciated!**_  
