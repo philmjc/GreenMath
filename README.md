@@ -1,5 +1,5 @@
 **An applied algebra learning app for Years 1 - 13 NCEA using an ecological theme.**  
-**Built with MEAN + IONIC based on an API REST <-> CLIENT architecture.**
+**Built with MEAN using an API REST <-> CLIENT architecture.**
 
 **Features:**
 - Engaging interactive content for users of all levels.
@@ -11,6 +11,7 @@
 **Phase 2. Extending the basic architecture and designing for scale and eventual migration to Angular 2 :**  
 - Models: Design schema for fast access, optimised 1-1 embedding and minimised M-M storage.  
 - Controllers: Focus on lean controllers, modularity and component directives.  
-- TypeScript: Start embedding it.  
+- TypeScript: Start embedding it. 
+- Mobile access - see the Ionic version.
 
 _**Feedback appreciated!**_  
